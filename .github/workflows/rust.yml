@@ -3,13 +3,10 @@ name: Rust
 on:
   push:
     branches: [ master ]
-    jobs: [ check, test, lints ]
   pull_request:
     branches: [ master ]
-    jobs: [ check, test, lints ]
   release:
     types: [ created ]
-    jobs: [ release ]
 
 env:
   CARGO_TERM_COLOR: always
@@ -83,6 +80,7 @@ jobs:
 
   release:
     name: release ${{ matrix.target }}
+    if: contains(github.ref, 'tags/')
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
