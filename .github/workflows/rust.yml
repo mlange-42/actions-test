@@ -80,6 +80,7 @@ jobs:
 
   release:
     name: Release for ${{ matrix.os }}
+    if: contains(github.ref, 'tags/')
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
