@@ -87,13 +87,13 @@ jobs:
         include:
           - os: ubuntu-latest
             artifact_name: actions-test
-            asset_name: actions-test-${{ github.tag }}-linux-amd64
+            asset_name: actions-test-$tag-linux-amd64
           - os: windows-latest
             artifact_name: actions-test.exe
-            asset_name: actions-test-${{ github.tag }}-windows-amd64
+            asset_name: actions-test-$tag-windows-amd64
           - os: macos-latest
             artifact_name: actions-test
-            asset_name: actions-test-${{ github.tag }}-macos-amd64
+            asset_name: actions-test-$tag-macos-amd64
 
     steps:
       - uses: actions/checkout@v2
