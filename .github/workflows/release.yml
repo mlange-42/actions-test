@@ -18,24 +18,26 @@ jobs:
           - os: ubuntu-latest
             artifact_name: actions-test-$tag-ubuntu-latest.tar.gz
             asset_name: actions-test-$tag-linux-amd64.tar.gz
+            env:
+                EXTENSION: ""
           - os: windows-latest
             artifact_name: actions-test-$tag-windows-latest.tar.gz
             asset_name: actions-test-$tag-windows-amd64.tar.gz
+            env:
+                EXTENSION: ".exe"
           - os: macos-latest
             artifact_name: actions-test-$tag-macos-latest.tar.gz
             asset_name: actions-test-$tag-macos-amd64.tar.gz
+            env:
+                EXTENSION: ""
 
     steps:
       - uses: actions/checkout@v2
       - name: Build
         run: |
           cargo build --release
-          rm -rf ${REPO} || exit 0
-          mkdir ${REPO}
-          if (( "$matrix.os" == "macos-latest" )); then cp -f target/release/actions-test ${REPO} > /dev/null; fi
-          if (( "$matrix.os" == "ubuntu-latest" )); then cp -f target/release/actions-test ${REPO} > /dev/null; fi
-          if (( "$matrix.os" == "windows-latest" )); then cp -f target/release/actions-test.exe ${REPO} > /dev/null; fi
-          tar -czf $REPO-$tag-$matrix.os.tar.gz $REPO
+          cp -f target/release/actions-test . > /dev/null
+          tar -czf $REPO-$tag-$matrix.os.tar.gz $REPO$EXTENSION
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
