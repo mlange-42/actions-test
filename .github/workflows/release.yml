@@ -43,5 +43,5 @@ jobs:
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: actions-test-${{ env.RELEASE_VERSION }}-${{ matrix.os }}.tar.gz
-          asset_name: actions-test-${{ env.RELEASE_VERSION }}-$OS_NAME.tar.gz
+          asset_name: actions-test-${{ env.RELEASE_VERSION }}-${{ OS_NAME }}.tar.gz
           tag: ${{ github.ref }}
