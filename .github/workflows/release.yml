@@ -35,13 +35,13 @@ jobs:
           cargo build --release
       - name: Compress
         run: |
-          cp -f target/release/actions-test${{ matrix.bin_extension }} . > /dev/null
-          tar -czf actions-test-${{ env.RELEASE_VERSION }}-${{ matrix.os }}.tar.gz $REPO${{ matrix.bin_extension }}
+          cp -f target/release/$REPO${{ matrix.bin_extension }} . > /dev/null
+          tar -czf $REPO-${{ env.RELEASE_VERSION }}-${{ matrix.os }}.tar.gz $REPO${{ matrix.bin_extension }}
         shell: bash
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: actions-test-${{ env.RELEASE_VERSION }}-${{ matrix.os }}.tar.gz
-          asset_name: actions-test-${{ env.RELEASE_VERSION }}-${{ matrix.os_name }}.tar.gz
+          file: $REPO-${{ env.RELEASE_VERSION }}-${{ matrix.os }}.tar.gz
+          asset_name: $REPO-${{ env.RELEASE_VERSION }}-${{ matrix.os_name }}.tar.gz
           tag: ${{ github.ref }}
