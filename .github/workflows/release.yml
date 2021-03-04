@@ -16,20 +16,17 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            artifact_name: actions-test-${{ env.RELEASE_VERSION }}-ubuntu-latest.tar.gz
-            asset_name: actions-test-${{ env.RELEASE_VERSION }}-linux-amd64.tar.gz
             env:
                 EXTENSION: ""
+                OS_NAME: "linux-amd64"
           - os: windows-latest
-            artifact_name: actions-test-${{ env.RELEASE_VERSION }}-windows-latest.tar.gz
-            asset_name: actions-test-${{ env.RELEASE_VERSION }}-windows-amd64.tar.gz
             env:
                 EXTENSION: ".exe"
+                OS_NAME: "macos-amd64"
           - os: macos-latest
-            artifact_name: actions-test-${{ env.RELEASE_VERSION }}-macos-latest.tar.gz
-            asset_name: actions-test-${{ env.RELEASE_VERSION }}-macos-amd64.tar.gz
             env:
                 EXTENSION: ""
+                OS_NAME: "linux-amd64"
 
     steps:
       - uses: actions/checkout@v2
@@ -45,6 +42,6 @@ jobs:
         uses: svenstaro/upload-release-action@v2
         with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: ${{ matrix.artifact_name }}
-          asset_name: ${{ matrix.asset_name }}
+          file: actions-test-${{ env.RELEASE_VERSION }}-${{ matrix.os }}.tar.gz
+          asset_name: actions-test-${{ env.RELEASE_VERSION }}-$OS_NAME.tar.gz
           tag: ${{ github.ref }}
