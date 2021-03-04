@@ -16,18 +16,18 @@ jobs:
       matrix:
         include:
           - os: ubuntu-latest
-            artifact_name: actions-test-${{ github.ref }}-ubuntu-latest.tar.gz
-            asset_name: actions-test-${{ github.ref }}-linux-amd64.tar.gz
+            artifact_name: actions-test-${{ tag }}-ubuntu-latest.tar.gz
+            asset_name: actions-test-${{ tag }}-linux-amd64.tar.gz
             env:
                 EXTENSION: ""
           - os: windows-latest
-            artifact_name: actions-test-${{ github.ref }}-windows-latest.tar.gz
-            asset_name: actions-test-${{ github.ref }}-windows-amd64.tar.gz
+            artifact_name: actions-test-${{ tag }}-windows-latest.tar.gz
+            asset_name: actions-test-${{ tag }}-windows-amd64.tar.gz
             env:
                 EXTENSION: ".exe"
           - os: macos-latest
-            artifact_name: actions-test-${{ github.ref }}-macos-latest.tar.gz
-            asset_name: actions-test-${{ github.ref }}-macos-amd64.tar.gz
+            artifact_name: actions-test-${{ tag }}-macos-latest.tar.gz
+            asset_name: actions-test-${{ tag }}-macos-amd64.tar.gz
             env:
                 EXTENSION: ""
 
