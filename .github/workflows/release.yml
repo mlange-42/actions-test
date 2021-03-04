@@ -6,7 +6,7 @@ on:
 
 env:
   CARGO_TERM_COLOR: always
-  REPO: yarner
+  REPO: actions-test
 
 jobs:
   release:
