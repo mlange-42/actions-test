@@ -14,6 +14,7 @@ jobs:
     name: Publish guide
     env:
       MDBOOK_VERSION: 0.4.7
+      MDBOOK_TOC_VERSION: 0.6.1
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -21,6 +22,7 @@ jobs:
       - name: Install mdbook
         run: |
           curl -LsSf https://github.com/rust-lang/mdBook/releases/download/v${MDBOOK_VERSION}/mdbook-v${MDBOOK_VERSION}-x86_64-unknown-linux-gnu.tar.gz | tar xzf -
+          curl -LsSf https://github.com/badboy/mdbook-toc/releases/download/${MDBOOK_TOC_VERSION}/mdbook-toc-${MDBOOK_TOC_VERSION}-x86_64-unknown-linux-gnu.tar.gz | tar xzf -
           echo $(pwd) >> $GITHUB_PATH
       - name: Run mdbook
         run: |
