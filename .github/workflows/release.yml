@@ -20,10 +20,10 @@ jobs:
             os_name: "linux-amd64"
           - os: windows-latest
             bin_extension: ".exe"
-            os_name: "macos-amd64"
+            os_name: "windows-amd64"
           - os: macos-latest
             bin_extension: ""
-            os_name: "linux-amd64"
+            os_name: "macos-amd64"
 
     steps:
       - uses: actions/checkout@v2
