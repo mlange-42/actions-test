@@ -37,7 +37,7 @@ jobs:
         run: |
           cargo build --release
           cp -f target/release/actions-test . > /dev/null
-          tar -czf $REPO-$tag-$matrix.os.tar.gz $REPO$EXTENSION
+          tar -czf ${{ matrix.artifact_name }} $REPO$EXTENSION
           ls
       - name: Upload binaries to release
         uses: svenstaro/upload-release-action@v2
